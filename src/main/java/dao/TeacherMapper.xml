@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TeacherMapper">
+    <select id="findById" parameterType="int" resultType="pojo.Teacher">
+        select * from teacher where id=#{id}
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="pojo.Teacher">
+        select * from teacher where name=#{name}
+    </select>
+
+    <select id="findByUsername" parameterType="String" resultType="pojo.Teacher">
+        select * from teacher where username=#{username}
+    </select>
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="pojo.Teacher">
+        insert into teacher (name, username, password) values (#{name}, #{username}, #{password})
+    </insert>
+
+</mapper>

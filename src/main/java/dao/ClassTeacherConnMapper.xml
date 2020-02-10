@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ClassTeacherConnMapper">
+    <select id="findTeachersByClass" parameterType="int" resultType="pojo.ClassTeacherConn">
+        select
+          id,
+          teacher_id as teacherId,
+          class_id as classId
+        from class_teacher_conn where class_id=#{id}
+    </select>
+
+    <select id="findClassesByTeacher" parameterType="int" resultType="pojo.ClassTeacherConn">
+        select
+          id,
+          teacher_id as teacherId,
+          class_id as classId
+        from class_teacher_conn where teacher_id=#{id}
+    </select>
+
+    <insert id="create" parameterType="pojo.ClassTeacherConn" useGeneratedKeys="true" keyProperty="id">
+        insert into class_teacher_conn (teacher_id, class_id) VALUES
+        (#{teacherId}, #{classId})
+    </insert>
+    
+    <delete id="deleteClass" parameterType="pojo.ClassTeacherConn">
+        delete from class_teacher_conn where class_id=#{classId} and teacher_id=#{teacherId}
+    </delete>
+</mapper>

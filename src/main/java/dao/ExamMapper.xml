@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ExamMapper">
+    <insert id="create" parameterType="pojo.Exam" useGeneratedKeys="true" keyProperty="id">
+        insert into exam (title, teacher_id, publish_date, active) values
+        (#{title}, #{teacherId}, #{publishDate}, #{active})
+    </insert>
+
+    <select id="findByTeacherId" parameterType="int" resultType="pojo.Exam">
+        select
+        id,
+        title,
+        teacher_id as teacherId,
+        publish_date as publishDate,
+        active from exam where teacher_id=#{id}
+    </select>
+
+    <update id="update" parameterType="pojo.Exam">
+        update exam set
+        title=#{title}, teacher_id=#{teacherId},
+        publish_date=#{publishDate}, active=#{active}
+        where id=#{id}
+    </update>
+</mapper>

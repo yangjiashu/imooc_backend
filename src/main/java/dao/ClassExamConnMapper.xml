@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ClassExamConnMapper">
+    <select id="findExamsByClass" parameterType="int" resultType="pojo.ClassExamConn">
+        select
+        id,
+        class_id as classId,
+        exam_id as examId,
+        from class_exam_conn where class_id=#{id}
+    </select>
+
+    <select id="findClassesByExam" parameterType="int" resultType="pojo.ClassExamConn">
+        select id,class_id as classId,exam_id as examId
+        from class_exam_conn where exam_id=#{id}
+    </select>
+
+    <insert id="create" parameterType="pojo.ClassExamConn" useGeneratedKeys="true" keyProperty="id">
+        insert into class_exam_conn (class_id, exam_id) VALUES
+        (#{classId}, #{examId})
+    </insert>
+</mapper>

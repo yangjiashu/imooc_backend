@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.QuestionMapper">
+    <select id="findById" parameterType="int" resultType="pojo.Question">
+        select
+        id,
+        `desc`,
+        type,
+        instruction,
+        answer_num as answerNum,
+        answer_content as answerContent,
+        exam_id as examId
+        from question where id=#{id}
+    </select>
+
+    <insert id="create" parameterType="pojo.Question" useGeneratedKeys="true" keyProperty="id">
+        insert into question(`desc`, type, instruction, answer_num, answer_content, exam_id)
+        values (#{desc}, #{type}, #{instruction}, #{answerNum}, #{answerContent}, #{examId})
+    </insert>
+
+    <select id="findByExamId" parameterType="int" resultType="pojo.Question">
+        select
+        id,
+        `desc`,
+        type,
+        instruction,
+        answer_num as answerNum,
+        answer_content as answerContent,
+        exam_id as examId
+        from question where exam_id=#{id}
+    </select>
+
+    <update id="update" parameterType="pojo.Question">
+        update question set
+        `desc`=#{desc}, type=#{type},
+        instruction=#{instruction}, answer_num=#{answerNum},
+        answer_content=#{answerContent}, exam_id=#{examId}
+        where id=#{id}
+    </update>
+</mapper>

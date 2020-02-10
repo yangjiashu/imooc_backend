@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ClassMapper">
+    <select id="findById" parameterType="int" resultType="pojo.Classes">
+        select
+          id,
+          name,
+          stu_num as stuNum,
+          department
+        from classes where id=#{id}
+    </select>
+    <select id="findByName" parameterType="String" resultType="pojo.Classes">
+        select
+          id,
+          name,
+          stu_num as stuNum,
+          department
+        from classes where name=#{name}
+    </select>
+</mapper>
